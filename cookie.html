@@ -1318,7 +1318,7 @@ input[type=range]:active::-ms-thumb,input[type=range]:hover::-ms-thumb {backgrou
 	position:absolute;
 	z-index:1000000000;
 	display:none;
-	//transition:left 0.1s ease-out,right 0.1s ease-out,top 0.1s ease-out,bottom 0.1s ease-out;
+	/*transition:left 0.1s ease-out,right 0.1s ease-out,top 0.1s ease-out,bottom 0.1s ease-out;*/
 }
 #tooltip
 {
@@ -1950,7 +1950,7 @@ q:after
 .meter.filling
 {
 /* this tiny thing is actually an enormous resource hog */
--/*webkit-animation:fluidMotion 10s infinite linear;
+/*webkit-animation:fluidMotion 10s infinite linear;
    -moz-animation:fluidMotion 10s infinite linear;
         animation:fluidMotion 10s infinite linear;*/
 	/*-webkit-transition:right 0.5s linear;
@@ -24366,12 +24366,15 @@ window.onload=function()
 			
 			var launchSteps=[
 				function(next){
+					console.log("step 1");
 					LoadLang('EN',next);
 				},
 				function(next){
+					console.log("step 2");
 					LoadLang('EN',next);
 				},
 				function(next){
+					console.log("step 3");
 					locStringsFallback=locStrings;
 					
 					//init mod interface
@@ -24385,6 +24388,7 @@ window.onload=function()
 					next();
 				},
 				function(next){
+					console.log("step 4");
 					if (typeof PRESETMODS!=='undefined' && PRESETMODS.length>0)
 					{
 						var mods=PRESETMODS;
@@ -24403,10 +24407,12 @@ window.onload=function()
 					else if (next) next();
 				},
 				function(next){
+					console.log("step 5");
 					if (App && App.loadMods) App.loadMods(next);
 					else if (next) next();
 				},
 				function(){
+					console.log("step 6");
 					Game.Launch();
 					if (top!=self && !Game.local) Game.ErrorFrame();
 					else
