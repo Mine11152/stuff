@@ -24430,6 +24430,7 @@ window.onload=function()
 			];
 			var doLaunchStep=function(step)
 			{
+				console.log(step);
 				if (!launchSteps[step]) return;
 				var next=function(){doLaunchStep(step+1);};
 				launchSteps[step](next);
