@@ -3718,7 +3718,7 @@ var LoadScript=function(url,callback,error)
 		js.onload=callback;
 	}
 	if (error) js.onerror=error;
-	
+	console.log(URL)
 	if (url!=="EN") {
 		js.setAttribute('src',url);
 	} else {
