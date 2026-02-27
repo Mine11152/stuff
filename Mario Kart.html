@@ -1,34 +1,58 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>mGBA WASM Emulator</title>
 
-  </head>
-  <body>
-    <canvas
-    id="screen"
-    width="480"
-    height="320"></canvas>
+  <!-- Required for WASM threads -->
+  <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
+  <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp">
 
-    <script>
-      import mGBA from 'https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/mgba.js';
-      let canvas_id = 'screen'
-      var Module = {
-      	canvas: (function () {
-      		return document.getElementById(canvas_id);
-      	})()
-      };
-      
-      mGBA(this.module).then(function (Module) {
-      	mGBAVersion =
-      		Module.version.projectName +
-      		' ' +
-      		Module.version.projectVersion;
-      
-          console.log(mGBAVersion);
-      	Module.FSInit();
-      });
+  <style>
+    body { background: #111; color: white; font-family: sans-serif; }
+    #screen { image-rendering: pixelated; border: 2px solid #444; }
+  </style>
+</head>
+<body>
 
-      
-    </script>
-      
-  </body>
+  <h2>mGBA WASM Emulator</h2>
+
+  <canvas id="screen" width="240" height="160"></canvas>
+  <br><br>
+
+  <input type="file" id="romInput" accept=".gba,.bin,.zip" />
+
+  <script type="module">
+    import mGBA from "https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/mgba.js";
+
+    const canvasId = "screen";
+
+    const Module = {
+      canvas: () => document.getElementById(canvasId)
+    };
+
+    let mgbaInstance = null;
+
+    mGBA(Module).then((mod) => {
+      mgbaInstance = mod;
+      console.log("mGBA loaded:", mod.version.projectName, mod.version.projectVersion);
+      mod.FSInit();
+    });
+
+    // Load ROM from file input
+    document.getElementById("romInput").addEventListener("change", async (e) => {
+      const file = e.target.files[0];
+      if (!file || !mgbaInstance) return;
+
+      const arrayBuffer = await file.arrayBuffer();
+      const romName = "/game.gba";
+
+      mgbaInstance.FS.writeFile(romName, new Uint8Array(arrayBuffer));
+      mgbaInstance.loadGame(romName);
+
+      console.log("Loaded ROM:", file.name);
+    });
+  </script>
+
+</body>
 </html>
