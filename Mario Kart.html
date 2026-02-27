@@ -4,5 +4,33 @@
   </head>
   <body>
     <script type="module" src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/mgba.js"></script>
+
+    <canvas
+    id="screen"
+    width="480"
+    height="320"
+    />
+
+    <script>
+      let canvas_id = 'screen'
+      var Module = {
+      	canvas: (function () {
+      		return document.getElementById(canvas_id);
+      	})()
+      };
+      
+      mGBA(this.module).then(function (Module) {
+      	mGBAVersion =
+      		Module.version.projectName +
+      		' ' +
+      		Module.version.projectVersion;
+      
+          console.log(mGBAVersion);
+      	Module.FSInit();
+      });
+
+      
+    </script>
+      
   </body>
 </html>
