@@ -1,25 +1,24 @@
 <html>
 <head>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/util.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/util.js"></script>
 <script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/core.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/arm.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/thumb.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/mmu.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/io.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/audio.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/video.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/video/proxy.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/video/software.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/irq.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/keypad.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/sio.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/savedata.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/gpio.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/gba.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/arm.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/thumb.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/mmu.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/io.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/audio.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/video.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/video/proxy.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/video/software.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/irq.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/keypad.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/savedata.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/gpio.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/js/gba.js"></script>
 
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/resources/xhr.js"></script>
-<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/resources/console.js"></script>
-<link href="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/resources/console.css" rel="stylesheet">
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/resources/xhr.js"></script>
+<script src="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/resources/console.js"></script>
+<link href="https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/resources/console.css" rel="stylesheet">
 <script>
 	console.log("GameBoyAdvance in window?", "GameBoyAdvance" in window);
 
@@ -74,7 +73,7 @@ window.onload = function() {
 	gbaCon = new Console(core);
 	core.DEBUG("Logging begun!");
 	core.DEBUG("Loading BIOS...");
-	loadRom('https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/resources/bios.bin', function(bios) {
+	loadRom('https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/resources/bios.bin', function(bios) {
 		core.setBios(bios, false);
 		core.DEBUG("BIOS loaded!");
 		gbaCon.memory.refreshAll();
