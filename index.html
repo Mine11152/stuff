@@ -34,7 +34,7 @@
     <button onclick="openlink('https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/ultimate_flash_sonic.html');">Ultimate Flash Sonic</button>
     <button onclick="openlink('https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/unfair-mario.html');">Unfair Mario</button>
     <script>
-      async function openlink(url) {
+      /*async function openlink(url) {
     const response = await fetch(url);
     const html = await response.text();
 
@@ -75,8 +75,17 @@
         // Append inline script to preserve execution order
         doc.head.appendChild(script);
     }
-}
+}*/
+async function openlink(url) {
 
+        const response = await fetch(url);
+        const html = await response.text();
+
+        const newWin = window.open("about:blank", "_blank");
+        newWin.document.open();
+        newWin.document.write(html);
+        newWin.document.close();
+      }
 
 
       // Example usage:
