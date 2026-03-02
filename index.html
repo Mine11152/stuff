@@ -35,15 +35,38 @@
     <button onclick="openlink('https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/unfair-mario.html');">Unfair Mario</button>
     <script>
       async function openlink(url) {
-
         const response = await fetch(url);
         const html = await response.text();
 
-        const newWin = window.open("about:blank", "_blank");
-        newWin.document.open();
-        newWin.document.write(html);
-        newWin.document.close();
+        const win = window.open("about:blank", "_blank");
+        const doc = win.document;
+
+        // Parse the HTML into a DOM
+        const parser = new DOMParser();
+        const parsed = parser.parseFromString(html, "text/html");
+
+        // Copy <head> content except scripts
+        doc.head.innerHTML = parsed.head.innerHTML.replace(/<script[\s\S]*?<\/script>/gi, "");
+
+        // Copy <body> content except scripts
+        doc.body.innerHTML = parsed.body.innerHTML.replace(/<script[\s\S]*?<\/script>/gi, "");
+
+        // Load external scripts in order
+        parsed.querySelectorAll("script[src]").forEach(s => {
+          const script = doc.createElement("script");
+          script.src = s.src;
+          script.async = false; // preserve order
+          doc.body.appendChild(script);
+        });
+
+        // Load inline scripts in order
+        parsed.querySelectorAll("script:not([src])").forEach(s => {
+          const script = doc.createElement("script");
+          script.textContent = s.textContent;
+          doc.body.appendChild(script);
+        });
       }
+
 
       // Example usage:
       
