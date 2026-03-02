@@ -1,26 +1,25 @@
 <html>
 <head>
-<base harf="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/" target="_blank">
-<script src="js/util.js"></script>
-<script src="js/core.js"></script>
-<script src="js/arm.js"></script>
-<script src="js/thumb.js"></script>
-<script src="js/mmu.js"></script>
-<script src="js/io.js"></script>
-<script src="js/audio.js"></script>
-<script src="js/video.js"></script>
-<script src="js/video/proxy.js"></script>
-<script src="js/video/software.js"></script>
-<script src="js/irq.js"></script>
-<script src="js/keypad.js"></script>
-<script src="js/sio.js"></script>
-<script src="js/savedata.js"></script>
-<script src="js/gpio.js"></script>
-<script src="js/gba.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/util.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/core.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/arm.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/thumb.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/mmu.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/io.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/audio.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/video.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/video/proxy.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/video/software.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/irq.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/keypad.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/sio.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/savedata.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/gpio.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/js/gba.js"></script>
 
-<script src="resources/xhr.js"></script>
-<script src="resources/console.js"></script>
-<link href="resources/console.css" rel="stylesheet">
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/resources/xhr.js"></script>
+<script src="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/resources/console.js"></script>
+<link href="https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/resources/console.css" rel="stylesheet">
 <script>
 function runTest(r) {
 	core.setRom(r);
@@ -73,7 +72,7 @@ window.onload = function() {
 	gbaCon = new Console(core);
 	core.DEBUG("Logging begun!");
 	core.DEBUG("Loading BIOS...");
-	loadRom('resources/bios.bin', function(bios) {
+	loadRom('https://raw.githubusercontent.com/endrift/gbajs/refs/heads/master/resources/bios.bin', function(bios) {
 		core.setBios(bios, false);
 		core.DEBUG("BIOS loaded!");
 		gbaCon.memory.refreshAll();
