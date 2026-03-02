@@ -1,3 +1,5 @@
+console.log("core.js loaded")
+
 function ARMCore() {
 	this.inherit();
 	this.SP = 13;
