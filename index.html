@@ -35,37 +35,46 @@
     <button onclick="openlink('https://raw.githubusercontent.com/Mine11152/stuff/refs/heads/main/unfair-mario.html');">Unfair Mario</button>
     <script>
       async function openlink(url) {
-        const response = await fetch(url);
-        const html = await response.text();
+    const response = await fetch(url);
+    const html = await response.text();
 
-        const win = window.open("about:blank", "_blank");
-        const doc = win.document;
+    const win = window.open("about:blank", "_blank");
+    const doc = win.document;
 
-        // Parse the HTML into a DOM
-        const parser = new DOMParser();
-        const parsed = parser.parseFromString(html, "text/html");
+    // Parse the HTML into a DOM
+    const parser = new DOMParser();
+    const parsed = parser.parseFromString(html, "text/html");
 
-        // Copy <head> content except scripts
-        doc.head.innerHTML = parsed.head.innerHTML.replace(/<script[\s\S]*?<\/script>/gi, "");
+    // Remove all scripts from head/body before copying
+    doc.head.innerHTML = parsed.head.innerHTML.replace(/<script[\s\S]*?<\/script>/gi, "");
+    doc.body.innerHTML = parsed.body.innerHTML.replace(/<script[\s\S]*?<\/script>/gi, "");
 
-        // Copy <body> content except scripts
-        doc.body.innerHTML = parsed.body.innerHTML.replace(/<script[\s\S]*?<\/script>/gi, "");
+    // Collect scripts in the order they appear in the original document
+    const scripts = [...parsed.querySelectorAll("script")];
 
-        // Load external scripts in order
-        parsed.querySelectorAll("script[src]").forEach(s => {
-          const script = doc.createElement("script");
-          script.src = s.src;
-          script.async = false; // preserve order
-          doc.body.appendChild(script);
-        });
+    for (const s of scripts) {
+        const script = doc.createElement("script");
 
-        // Load inline scripts in order
-        parsed.querySelectorAll("script:not([src])").forEach(s => {
-          const script = doc.createElement("script");
-          script.textContent = s.textContent;
-          doc.body.appendChild(script);
-        });
-      }
+        if (s.src) {
+            // Fetch external script content
+            try {
+                const res = await fetch(s.src);
+                const js = await res.text();
+                script.textContent = js;
+            } catch (e) {
+                console.error("Failed to fetch script:", s.src, e);
+                continue;
+            }
+        } else {
+            // Inline script
+            script.textContent = s.textContent;
+        }
+
+        // Append inline script to preserve execution order
+        doc.body.appendChild(script);
+    }
+}
+
 
 
       // Example usage:
