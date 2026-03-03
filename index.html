@@ -79,7 +79,7 @@
       	</li>
     </ul>
     <script>
-      async function openlink(url) {
+      /*async function openlink(url) {
     const response = await fetch(url);
     const html = await response.text();
 
@@ -100,7 +100,7 @@
     for (const s of scripts) {
         const script = doc.createElement("script");
 
-        if (s.src) {
+        if (s.src && !s.src.startswith("https://unpkg.com") {
             // Fetch external script content
             try {
                 const res = await fetch(s.src);
@@ -110,6 +110,8 @@
                 console.error("Failed to fetch script:", s.src, e);
                 continue;
             }
+        } else if (s.src) {
+          script.src = s.src;
         } else {
             // Inline script
             script.textContent = s.textContent;
@@ -118,8 +120,17 @@
         // Append inline script to preserve execution order
         doc.head.appendChild(script);
     }
-}
+}*/
+async function openlink(url) {
 
+        const response = await fetch(url);
+        const html = await response.text();
+
+        const newWin = window.open("about:blank", "_blank");
+        newWin.document.open();
+        newWin.document.write(html);
+        newWin.document.close();
+      }
 
 
       // Example usage:
