@@ -132,7 +132,10 @@ async function openlink(url) {
         const response = await fetch(url);
         const html = await response.text();
 
-        document.body.innerHTML = html
+        const newWin = window.open(".", "");
+        newWin.document.open();
+        newWin.document.write(html);
+        newWin.document.close();
       }
 
 
